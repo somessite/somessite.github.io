@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<style>
+		.wrap{
+			margin: 0 auto;
+			max-width: 600px;
+		}
+	</style>
+	<div class="wrap">
+		<input type="checkbox" value="all" class="checkedAll"  />Все
+		<br/>
+		<input type="checkbox" value="1" class="checkSingle" />1 пересадка
+		<input type="checkbox" value="2" class="checkSingle" />2 пересадки
+		<input type="checkbox" value="3" class="checkSingle" />3 пересадки
+		<input type="checkbox" value="4" class="checkSingle" />4 пересадки
+	</div>
+	<script>
+
+	const checkboxes = document.querySelectorAll('input[type=checkbox]')
+
+
+	checkboxes.forEach(el => el.addEventListener('click', function(){
+		let all;
+		let chck = [];
+		for(let i of checkboxes){
+			if(i.value === 'all'){
+				all = i
+			}
+			else{
+				chck.push(i)
+			}
+		}	
+			if(this.value === 'all'){
+				this.checked ?
+					chck.forEach(el => el.checked = true)
+				:
+					chck.forEach(el => el.checked = false)
+			}
+			else{
+				if(this.checked){
+					let isAllChecked = false
+					chck.forEach(el => {
+						if(!el.checked){
+							isAllChecked = true;
+						}
+					})
+					
+					if(!isAllChecked){ 
+							all.checked = true
+					} 
+				}
+				else{
+					all.checked = false
+				}
+			}
+			const filters = []
+			for(let i of checkboxes){
+				if(i.checked){
+					i.value !== "all" && filters.push(i)
+				}
+			}
+			console.log(filters)
+			}))
+
+	</script>
+</body>
+</html>
+
+
+
+</body>
+</html>
